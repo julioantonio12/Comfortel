@@ -1,0 +1,86 @@
+﻿<form name="form" novalidate autocomplete="off" ng-submit="save(form)">
+
+    <div>
+        <div class="col-md-12">
+            <label>Número de Adultos:</label>
+            <input type="text" class="form-control form-control-product" ng-model="item.NumAdults" placeholder="No. adultos" />
+            <br />
+            <label>Número de niños:</label>
+            <input type="text" class="form-control form-control-product" ng-model="item.NumKids" placeholder="No. niños" />
+            <br />
+            <label>Estatus:</label>
+            <input type="text" class="form-control form-control-product" ng-model="item.Status" placeholder="Estatus" />
+            <br />
+            <label>Total:</label>
+            <input type="text" class="form-control form-control-product" ng-model="item.Total" placeholder="Total" />
+            <br />
+            <label>Medio de reservación:</label>
+            <input type="text" class="form-control form-control-product" ng-model="item.ReservationMedium" placeholder="Medio reserva" />
+            <br />
+            <label>Código de reservación:</label>
+            <input type="text" class="form-control form-control-product" ng-model="item.ReservationCode" placeholder="Código reservación" />
+            <br />
+            <label>Id huésped:</label>
+            <input type="text" class="form-control form-control-product" ng-model="item.GuestId" placeholder="Id huésped" />
+            <br />
+
+            <div id="pickup_date" class="col-md-3">
+                <p>
+                    <label class="form">Fecha inicio: </label>
+                    <input type="date" id="pick_date" name="pickup_date" onchange="cal()" class="form-control" />
+                </p>
+            </div>
+            <div id="dropoff_date" class="col-md-3">
+                <p>
+                    <label class="form">Fecha fin: </label>
+                    <input type="date" id="drop_date" name="dropoff_date" onchange="cal()" class="form-control" />
+                </p>
+            </div>
+            <div id="numdays" class="col-md-3">
+                <label class="form">Días: </label>
+                <input type="text" class="form-control" id="numdays2" name="numdays" />
+            </div>
+
+            <label for="sel1">Habitación:</label>
+            <select ng-model="item.RoomId" ng-controller="ListRoomsController" class="form-control
+                    form-control-product" id="sel1" placeholder="Habitaciones">
+                <option ng-repeat="u in items2" value={{u.Id}}>{{u.Description}}</option>
+            </select>
+
+            
+
+            <label>Tarifa:</label>
+            <input type="text" class="form-control form-control-product" ng-model="itemPrice.Price" placeholder="Id huésped" />
+            <br />
+
+            <pre>
+                item: {{item | json}}
+            </pre>
+
+            <button class="btn btn-success btn-icon-split" type="submit">
+                <span class="icon text-white-50">
+                    <i class="fas fa-check"></i>
+                </span>
+                <span class="text">Guardar</span>
+            </button>
+            <button class="btn btn-danger btn-icon-split" onclick="location.reload()">
+                <span class="icon text-white-50">
+                    <i class="fas fa-trash"></i>
+                </span>
+                <span class="text">Cancelar</span>
+            </button>
+        </div>
+    </div>
+</form>
+<button ng-controller="GetPriceByRoomIdController" ng-click="getPriceByRoomId(item.RoomId)">Ok</button>
+
+@*<label for="sel1">Habitación:</label>
+    <select ng-controller="ListRoomsController" ng-model="item.IdRoom" class="form-control
+                        form-control-product" id="sel1" placeholder="Habitaciones"
+            ng-change="getPriceByRoomId(item.IdRoom)">
+        <option ng-repeat="u in items2" value={{u.Id}}>{{u.Description}}</option>
+
+    </select>*@
+
+
+@*ng-change="getPriceByRoomId(item.IdRoom)"*@

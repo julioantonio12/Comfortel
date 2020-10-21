@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ComfortelModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="ComfortelEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="spInsertUser">
+      <Parameter Name="NAME" Mode="In" Type="String" />
+      <Parameter Name="LASTNAME" Mode="In" Type="String" />
+      <Parameter Name="MOTHERLASTNAME" Mode="In" Type="String" />
+      <Parameter Name="USERNAME" Mode="In" Type="String" />
+      <Parameter Name="PASSWORD" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetUsers_" ReturnType="Collection(ComfortelModel.spGetUsers__Result)" />
+    <EntitySet Name="C__MigrationHistory" EntityType="ComfortelModel.C__MigrationHistory" />
+    <EntitySet Name="Users" EntityType="ComfortelModel.Users" />
+    <FunctionImport Name="spDeleteUser">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spLogIn" ReturnType="Collection(Int32)">
+      <Parameter Name="USER" Mode="In" Type="String" />
+      <Parameter Name="PASS" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spEditUser">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="NAME" Mode="In" Type="String" />
+      <Parameter Name="LASTNAME" Mode="In" Type="String" />
+      <Parameter Name="MOTHERLASTNAME" Mode="In" Type="String" />
+      <Parameter Name="PASSWORD" Mode="In" Type="String" />
+      <Parameter Name="USERNAME" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetGuests" ReturnType="Collection(ComfortelModel.spGetGuests_Result)" />
+    <FunctionImport Name="spInsertGuest">
+      <Parameter Name="NAME" Mode="In" Type="String" />
+      <Parameter Name="LASTNAME" Mode="In" Type="String" />
+      <Parameter Name="MOTHERLASTNAME" Mode="In" Type="String" />
+      <Parameter Name="EMAIL" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spDeleteGuest">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spEditGuest">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="NAME" Mode="In" Type="String" />
+      <Parameter Name="LASTNAME" Mode="In" Type="String" />
+      <Parameter Name="MOTHERLASTNAME" Mode="In" Type="String" />
+      <Parameter Name="EMAIL" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spGetRates" ReturnType="Collection(ComfortelModel.spGetRates_Result)" />
+    <FunctionImport Name="spDeleteRate">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spEditRate">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="NAME" Mode="In" Type="String" />
+      <Parameter Name="PRICE" Mode="In" Type="Single" />
+    </FunctionImport>
+    <FunctionImport Name="spInsertRate">
+      <Parameter Name="NAME" Mode="In" Type="String" />
+      <Parameter Name="PRICE" Mode="In" Type="Single" />
+    </FunctionImport>
+    <EntitySet Name="Guests" EntityType="ComfortelModel.Guests" />
+    <EntitySet Name="Rates" EntityType="ComfortelModel.Rates" />
+    <EntitySet Name="Rooms" EntityType="ComfortelModel.Rooms" />
+    <AssociationSet Name="FK_dbo_Rooms_dbo_Rates_RateId" Association="ComfortelModel.FK_dbo_Rooms_dbo_Rates_RateId">
+      <End Role="Rates" EntitySet="Rates" />
+      <End Role="Rooms" EntitySet="Rooms" />
+    </AssociationSet>
+    <FunctionImport Name="spDeleteRoom">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spEditRoom">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="DESCRIPTION" Mode="In" Type="String" />
+      <Parameter Name="TYPE" Mode="In" Type="String" />
+      <Parameter Name="CODE" Mode="In" Type="String" />
+      <Parameter Name="RATEID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetRooms" ReturnType="Collection(ComfortelModel.spGetRooms_Result)" />
+    <FunctionImport Name="spInsertRoom">
+      <Parameter Name="DESCRIPTION" Mode="In" Type="String" />
+      <Parameter Name="TYPE" Mode="In" Type="String" />
+      <Parameter Name="CODE" Mode="In" Type="String" />
+      <Parameter Name="RATEID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Payments" EntityType="ComfortelModel.Payments" />
+    <FunctionImport Name="spEditPayment">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+      <Parameter Name="DATE" Mode="In" Type="DateTime" />
+      <Parameter Name="TYPE" Mode="In" Type="Int32" />
+      <Parameter Name="AMOUNT" Mode="In" Type="Single" />
+      <Parameter Name="IDRESERVATION" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetPayments" ReturnType="Collection(ComfortelModel.spGetPayments_Result)" />
+    <FunctionImport Name="spInsertPayment">
+      <Parameter Name="DATE" Mode="In" Type="DateTime" />
+      <Parameter Name="TYPE" Mode="In" Type="Int32" />
+      <Parameter Name="AMOUNT" Mode="In" Type="Single" />
+      <Parameter Name="IDRESERVATION" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="Reservations" EntityType="ComfortelModel.Reservations" />
+    <AssociationSet Name="FK_dbo_Reservations_dbo_Guests_Guest_Id" Association="ComfortelModel.FK_dbo_Reservations_dbo_Guests_Guest_Id">
+      <End Role="Guests" EntitySet="Guests" />
+      <End Role="Reservations" EntitySet="Reservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Payments_dbo_Reservations_ReservationId" Association="ComfortelModel.FK_dbo_Payments_dbo_Reservations_ReservationId">
+      <End Role="Reservations" EntitySet="Reservations" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Reservations_dbo_Rooms_Room_Id" Association="ComfortelModel.FK_dbo_Reservations_dbo_Rooms_Room_Id">
+      <End Role="Rooms" EntitySet="Rooms" />
+      <End Role="Reservations" EntitySet="Reservations" />
+    </AssociationSet>
+    <FunctionImport Name="spDeletePayment">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spGetReservations" ReturnType="Collection(ComfortelModel.spGetReservations_Result)" />
+    <FunctionImport Name="spGetPrice" ReturnType="Collection(Single)">
+      <Parameter Name="ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="spGetUsers__Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" />
+    <Property Type="String" Name="LastName" Nullable="true" />
+    <Property Type="String" Name="MotherLastName" Nullable="true" />
+    <Property Type="String" Name="Password" Nullable="true" />
+    <Property Type="String" Name="UserName" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="C__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContextKey" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MotherLastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="spGetGuests_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" />
+    <Property Type="String" Name="LastName" Nullable="true" />
+    <Property Type="String" Name="MotherLastName" Nullable="true" />
+    <Property Type="String" Name="Email" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="spGetRates_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" />
+    <Property Type="Single" Name="Price" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="Guests">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MotherLastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Reservations" Relationship="ComfortelModel.FK_dbo_Reservations_dbo_Guests_Guest_Id" FromRole="Guests" ToRole="Reservations" />
+  </EntityType>
+  <EntityType Name="Rates">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Single" Nullable="false" />
+    <NavigationProperty Name="Rooms" Relationship="ComfortelModel.FK_dbo_Rooms_dbo_Rates_RateId" FromRole="Rates" ToRole="Rooms" />
+  </EntityType>
+  <EntityType Name="Rooms">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RateId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Rates" Relationship="ComfortelModel.FK_dbo_Rooms_dbo_Rates_RateId" FromRole="Rooms" ToRole="Rates" />
+    <NavigationProperty Name="Reservations" Relationship="ComfortelModel.FK_dbo_Reservations_dbo_Rooms_Room_Id" FromRole="Rooms" ToRole="Reservations" />
+  </EntityType>
+  <Association Name="FK_dbo_Rooms_dbo_Rates_RateId">
+    <End Type="ComfortelModel.Rates" Role="Rates" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ComfortelModel.Rooms" Role="Rooms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rates">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rooms">
+        <PropertyRef Name="RateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="spGetRooms_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="String" Name="Description" Nullable="true" />
+    <Property Type="String" Name="Type" Nullable="true" />
+    <Property Type="String" Name="Code" Nullable="true" />
+    <Property Type="Int32" Name="RateId" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="Payments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DatePayment" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PaymentType" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Single" Nullable="false" />
+    <Property Name="ReservationId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Reservations" Relationship="ComfortelModel.FK_dbo_Payments_dbo_Reservations_ReservationId" FromRole="Payments" ToRole="Reservations" />
+  </EntityType>
+  <ComplexType Name="spGetPayments_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="DateTime" Name="DatePayment" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="PaymentType" Nullable="false" />
+    <Property Type="Single" Name="Amount" Nullable="false" />
+    <Property Type="Int32" Name="ReservationId" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="Reservations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NumAdults" Type="Int32" Nullable="false" />
+    <Property Name="NumKids" Type="Int32" Nullable="false" />
+    <Property Name="DateBeg" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateEnd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="Total" Type="Single" Nullable="false" />
+    <Property Name="ReservationMedium" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ReservationCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IdRoom" Type="Int32" Nullable="false" />
+    <Property Name="IdGuest" Type="Int32" Nullable="false" />
+    <Property Name="Guest_Id" Type="Int32" />
+    <Property Name="Room_Id" Type="Int32" />
+    <NavigationProperty Name="Guests" Relationship="ComfortelModel.FK_dbo_Reservations_dbo_Guests_Guest_Id" FromRole="Reservations" ToRole="Guests" />
+    <NavigationProperty Name="Payments" Relationship="ComfortelModel.FK_dbo_Payments_dbo_Reservations_ReservationId" FromRole="Reservations" ToRole="Payments" />
+    <NavigationProperty Name="Rooms" Relationship="ComfortelModel.FK_dbo_Reservations_dbo_Rooms_Room_Id" FromRole="Reservations" ToRole="Rooms" />
+  </EntityType>
+  <Association Name="FK_dbo_Reservations_dbo_Guests_Guest_Id">
+    <End Type="ComfortelModel.Guests" Role="Guests" Multiplicity="0..1" />
+    <End Type="ComfortelModel.Reservations" Role="Reservations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guests">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservations">
+        <PropertyRef Name="Guest_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Payments_dbo_Reservations_ReservationId">
+    <End Type="ComfortelModel.Reservations" Role="Reservations" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="ComfortelModel.Payments" Role="Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reservations">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="ReservationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Reservations_dbo_Rooms_Room_Id">
+    <End Type="ComfortelModel.Rooms" Role="Rooms" Multiplicity="0..1" />
+    <End Type="ComfortelModel.Reservations" Role="Reservations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rooms">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservations">
+        <PropertyRef Name="Room_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="spGetReservations_Result">
+    <Property Type="Int32" Name="Id" Nullable="false" />
+    <Property Type="Int32" Name="NumAdults" Nullable="false" />
+    <Property Type="Int32" Name="NumKids" Nullable="false" />
+    <Property Type="DateTime" Name="DateBeg" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="DateEnd" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="Status" Nullable="false" />
+    <Property Type="Single" Name="Total" Nullable="false" />
+    <Property Type="String" Name="ReservationMedium" Nullable="true" />
+    <Property Type="String" Name="ReservationCode" Nullable="true" />
+    <Property Type="Int32" Name="IdRoom" Nullable="false" />
+    <Property Type="Int32" Name="IdGuest" Nullable="false" />
+    <Property Type="Int32" Name="Guest_Id" Nullable="true" />
+    <Property Type="Int32" Name="Room_Id" Nullable="true" />
+  </ComplexType>
+</Schema>

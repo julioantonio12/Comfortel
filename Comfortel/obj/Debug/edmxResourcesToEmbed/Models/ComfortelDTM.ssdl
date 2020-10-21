@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ComfortelModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__MigrationHistory">
+    <Key>
+      <PropertyRef Name="MigrationId" />
+      <PropertyRef Name="ContextKey" />
+    </Key>
+    <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+    <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Guests">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="LastName" Type="nvarchar(max)" />
+    <Property Name="MotherLastName" Type="nvarchar(max)" />
+    <Property Name="Email" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Payments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DatePayment" Type="datetime" Nullable="false" />
+    <Property Name="PaymentType" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="real" Nullable="false" />
+    <Property Name="ReservationId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Rates">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="Price" Type="real" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reservations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NumAdults" Type="int" Nullable="false" />
+    <Property Name="NumKids" Type="int" Nullable="false" />
+    <Property Name="DateBeg" Type="datetime" Nullable="false" />
+    <Property Name="DateEnd" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="Total" Type="real" Nullable="false" />
+    <Property Name="ReservationMedium" Type="nvarchar(max)" />
+    <Property Name="ReservationCode" Type="nvarchar(max)" />
+    <Property Name="IdRoom" Type="int" Nullable="false" />
+    <Property Name="IdGuest" Type="int" Nullable="false" />
+    <Property Name="Guest_Id" Type="int" />
+    <Property Name="Room_Id" Type="int" />
+  </EntityType>
+  <EntityType Name="Rooms">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Type" Type="nvarchar(max)" />
+    <Property Name="Code" Type="nvarchar(max)" />
+    <Property Name="RateId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="LastName" Type="nvarchar(max)" />
+    <Property Name="MotherLastName" Type="nvarchar(max)" />
+    <Property Name="Password" Type="nvarchar(max)" />
+    <Property Name="UserName" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_dbo_Payments_dbo_Reservations_ReservationId">
+    <End Role="Reservations" Type="Self.Reservations" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Payments" Type="Self.Payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reservations">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Payments">
+        <PropertyRef Name="ReservationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Reservations_dbo_Guests_Guest_Id">
+    <End Role="Guests" Type="Self.Guests" Multiplicity="0..1" />
+    <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guests">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservations">
+        <PropertyRef Name="Guest_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Reservations_dbo_Rooms_Room_Id">
+    <End Role="Rooms" Type="Self.Rooms" Multiplicity="0..1" />
+    <End Role="Reservations" Type="Self.Reservations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rooms">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Reservations">
+        <PropertyRef Name="Room_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Rooms_dbo_Rates_RateId">
+    <End Role="Rates" Type="Self.Rates" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Rooms" Type="Self.Rooms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Rates">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Rooms">
+        <PropertyRef Name="RateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="spDeleteGuest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDeletePayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDeleteRate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDeleteRoom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spDeleteUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spEditGuest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="NAME" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="LASTNAME" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="MOTHERLASTNAME" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="EMAIL" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="spEditPayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="DATE" Type="date" Mode="In" />
+    <Parameter Name="TYPE" Type="int" Mode="In" />
+    <Parameter Name="AMOUNT" Type="real" Mode="In" />
+    <Parameter Name="IDRESERVATION" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spEditRate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="NAME" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="PRICE" Type="real" Mode="In" />
+  </Function>
+  <Function Name="spEditRoom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="DESCRIPTION" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="TYPE" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CODE" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="RATEID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spEditUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+    <Parameter Name="NAME" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="LASTNAME" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="MOTHERLASTNAME" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="PASSWORD" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="USERNAME" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="spGetGuests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetPayments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetPrice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spGetRates" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetReservations" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetRooms" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="spGetUsers_" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="spGetUsers " />
+  <Function Name="spInsertGuest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NAME" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="LASTNAME" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="MOTHERLASTNAME" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="EMAIL" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="spInsertPayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DATE" Type="date" Mode="In" />
+    <Parameter Name="TYPE" Type="int" Mode="In" />
+    <Parameter Name="AMOUNT" Type="real" Mode="In" />
+    <Parameter Name="IDRESERVATION" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInsertRate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NAME" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="PRICE" Type="real" Mode="In" />
+  </Function>
+  <Function Name="spInsertRoom" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="DESCRIPTION" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="TYPE" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CODE" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="RATEID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="spInsertUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="NAME" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="LASTNAME" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="MOTHERLASTNAME" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="USERNAME" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="PASSWORD" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="spLogIn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USER" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="PASS" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <EntityContainer Name="ComfortelModelStoreContainer">
+    <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Guests" EntityType="Self.Guests" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Payments" EntityType="Self.Payments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rates" EntityType="Self.Rates" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reservations" EntityType="Self.Reservations" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Rooms" EntityType="Self.Rooms" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_Payments_dbo_Reservations_ReservationId" Association="Self.FK_dbo_Payments_dbo_Reservations_ReservationId">
+      <End Role="Reservations" EntitySet="Reservations" />
+      <End Role="Payments" EntitySet="Payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Reservations_dbo_Guests_Guest_Id" Association="Self.FK_dbo_Reservations_dbo_Guests_Guest_Id">
+      <End Role="Guests" EntitySet="Guests" />
+      <End Role="Reservations" EntitySet="Reservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Reservations_dbo_Rooms_Room_Id" Association="Self.FK_dbo_Reservations_dbo_Rooms_Room_Id">
+      <End Role="Rooms" EntitySet="Rooms" />
+      <End Role="Reservations" EntitySet="Reservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Rooms_dbo_Rates_RateId" Association="Self.FK_dbo_Rooms_dbo_Rates_RateId">
+      <End Role="Rates" EntitySet="Rates" />
+      <End Role="Rooms" EntitySet="Rooms" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,43 @@
+﻿
+
+<form name="form" novalidate autocomplete="off" ng-submit="save(form)">
+
+    <div>
+        <div class="col-md-12">
+            <label>ID:</label>
+            <input type="text" class="form-control form-control-guest" ng-model="item.Id" placeholder="ID" />
+            <br />
+            <label>Fecha:</label>
+            <input type="date" class="form-control form-control-guest" ng-model="item.Date" placeholder="Fecha" />
+            <br />
+            <label>Tipo:</label>
+            <input type="text" class="form-control form-control-guest" ng-model="item.Type" placeholder="Tipo" />
+            <br />
+            <label>Cantidad:</label>
+            <input type="text" class="form-control form-control-guest" ng-model="item.Amount" placeholder="Cantidad" />
+            <br />
+            <label>Número de Resevación:</label>
+            <input type="text" class="form-control form-control-guest" ng-model="item.IdReservation" placeholder="Número de Resevación" />
+            <br />
+
+
+            <pre>
+                item: {{item | json}}
+            </pre>
+
+            <button class="btn btn-success btn-icon-split" type="submit">
+                <span class="icon text-white-50">
+                    <i class="fas fa-check"></i>
+                </span>
+                <span class="text">Guardar</span>
+            </button>
+            <button class="btn btn-danger btn-icon-split" onclick="location.reload()">
+                <span class="icon text-white-50">
+                    <i class="fas fa-times-circle"></i>
+                </span>
+                <span class="text">Cancelar</span>
+            </button>
+
+        </div>
+    </div>
+</form>

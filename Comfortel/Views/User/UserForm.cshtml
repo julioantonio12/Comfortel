@@ -1,0 +1,28 @@
+﻿<form name="form" novalidate autocomplete="off" ng-submit="save(form)">
+
+    <div>
+        <div class="col-md-12">
+
+            <input type="text" class="form-control form-control-user" ng-model="item.Name" placeholder="Nombre" />
+            <br />
+            <input type="text" class="form-control form-control-user" ng-model="item.LastName" placeholder="Apellido Paterno" />
+            <br />
+            <input type="text" class="form-control form-control-user" ng-model="item.MotherLastName" placeholder="Apellido Materno" />
+            <br />
+            <input type="text" class="form-control form-control-user" ng-model="item.UserName" placeholder="Nombre de Usuario" />
+            <br />
+            <input type="password" class="form-control form-control-user" ng-model="item.Password" placeholder="Contraseña" />
+            <br />
+            <pre>
+                item: {{item | json}}
+                {{Section | json}}
+
+            </pre>
+
+            <button class="btn btn-primary" type="submit">Guardar</button> <br /><br /><br /><br />
+            <button class="btn btn-danger" onclick="location.reload()">Cancelar</button>
+        </div>
+    </div>
+</form>
+
+

@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ComfortelModelStoreContainer" CdmEntityContainer="ComfortelEntities">
+    <FunctionImportMapping FunctionImportName="spInsertUser" FunctionName="ComfortelModel.Store.spInsertUser" />
+    <FunctionImportMapping FunctionImportName="spGetUsers_" FunctionName="ComfortelModel.Store.spGetUsers_">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ComfortelModel.spGetUsers__Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MotherLastName" ColumnName="MotherLastName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="C__MigrationHistory">
+      <EntityTypeMapping TypeName="ComfortelModel.C__MigrationHistory">
+        <MappingFragment StoreEntitySet="__MigrationHistory">
+          <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+          <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="ComfortelModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="MotherLastName" ColumnName="MotherLastName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spDeleteUser" FunctionName="ComfortelModel.Store.spDeleteUser" />
+    <FunctionImportMapping FunctionImportName="spLogIn" FunctionName="ComfortelModel.Store.spLogIn" />
+    <FunctionImportMapping FunctionImportName="spEditUser" FunctionName="ComfortelModel.Store.spEditUser" />
+    <FunctionImportMapping FunctionImportName="spGetGuests" FunctionName="ComfortelModel.Store.spGetGuests">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ComfortelModel.spGetGuests_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MotherLastName" ColumnName="MotherLastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spInsertGuest" FunctionName="ComfortelModel.Store.spInsertGuest" />
+    <FunctionImportMapping FunctionImportName="spDeleteGuest" FunctionName="ComfortelModel.Store.spDeleteGuest" />
+    <FunctionImportMapping FunctionImportName="spEditGuest" FunctionName="ComfortelModel.Store.spEditGuest" />
+    <FunctionImportMapping FunctionImportName="spGetRates" FunctionName="ComfortelModel.Store.spGetRates">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ComfortelModel.spGetRates_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spDeleteRate" FunctionName="ComfortelModel.Store.spDeleteRate" />
+    <FunctionImportMapping FunctionImportName="spEditRate" FunctionName="ComfortelModel.Store.spEditRate" />
+    <FunctionImportMapping FunctionImportName="spInsertRate" FunctionName="ComfortelModel.Store.spInsertRate" />
+    <EntitySetMapping Name="Guests">
+      <EntityTypeMapping TypeName="ComfortelModel.Guests">
+        <MappingFragment StoreEntitySet="Guests">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="MotherLastName" ColumnName="MotherLastName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rates">
+      <EntityTypeMapping TypeName="ComfortelModel.Rates">
+        <MappingFragment StoreEntitySet="Rates">
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rooms">
+      <EntityTypeMapping TypeName="ComfortelModel.Rooms">
+        <MappingFragment StoreEntitySet="Rooms">
+          <ScalarProperty Name="RateId" ColumnName="RateId" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spDeleteRoom" FunctionName="ComfortelModel.Store.spDeleteRoom" />
+    <FunctionImportMapping FunctionImportName="spEditRoom" FunctionName="ComfortelModel.Store.spEditRoom" />
+    <FunctionImportMapping FunctionImportName="spGetRooms" FunctionName="ComfortelModel.Store.spGetRooms">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ComfortelModel.spGetRooms_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="RateId" ColumnName="RateId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spInsertRoom" FunctionName="ComfortelModel.Store.spInsertRoom" />
+    <EntitySetMapping Name="Payments">
+      <EntityTypeMapping TypeName="ComfortelModel.Payments">
+        <MappingFragment StoreEntitySet="Payments">
+          <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+          <ScalarProperty Name="DatePayment" ColumnName="DatePayment" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spEditPayment" FunctionName="ComfortelModel.Store.spEditPayment" />
+    <FunctionImportMapping FunctionImportName="spGetPayments" FunctionName="ComfortelModel.Store.spGetPayments">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ComfortelModel.spGetPayments_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DatePayment" ColumnName="DatePayment" />
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="ReservationId" ColumnName="ReservationId" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spInsertPayment" FunctionName="ComfortelModel.Store.spInsertPayment" />
+    <EntitySetMapping Name="Reservations">
+      <EntityTypeMapping TypeName="ComfortelModel.Reservations">
+        <MappingFragment StoreEntitySet="Reservations">
+          <ScalarProperty Name="Room_Id" ColumnName="Room_Id" />
+          <ScalarProperty Name="Guest_Id" ColumnName="Guest_Id" />
+          <ScalarProperty Name="IdGuest" ColumnName="IdGuest" />
+          <ScalarProperty Name="IdRoom" ColumnName="IdRoom" />
+          <ScalarProperty Name="ReservationCode" ColumnName="ReservationCode" />
+          <ScalarProperty Name="ReservationMedium" ColumnName="ReservationMedium" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+          <ScalarProperty Name="DateBeg" ColumnName="DateBeg" />
+          <ScalarProperty Name="NumKids" ColumnName="NumKids" />
+          <ScalarProperty Name="NumAdults" ColumnName="NumAdults" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="spDeletePayment" FunctionName="ComfortelModel.Store.spDeletePayment" />
+    <FunctionImportMapping FunctionImportName="spGetReservations" FunctionName="ComfortelModel.Store.spGetReservations">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ComfortelModel.spGetReservations_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NumAdults" ColumnName="NumAdults" />
+          <ScalarProperty Name="NumKids" ColumnName="NumKids" />
+          <ScalarProperty Name="DateBeg" ColumnName="DateBeg" />
+          <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="ReservationMedium" ColumnName="ReservationMedium" />
+          <ScalarProperty Name="ReservationCode" ColumnName="ReservationCode" />
+          <ScalarProperty Name="IdRoom" ColumnName="IdRoom" />
+          <ScalarProperty Name="IdGuest" ColumnName="IdGuest" />
+          <ScalarProperty Name="Guest_Id" ColumnName="Guest_Id" />
+          <ScalarProperty Name="Room_Id" ColumnName="Room_Id" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spGetPrice" FunctionName="ComfortelModel.Store.spGetPrice" />
+  </EntityContainerMapping>
+</Mapping>

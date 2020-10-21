@@ -1,0 +1,40 @@
+﻿<form name="form" novalidate autocomplete="off" ng-submit="save(form)">
+
+    <div>
+        <div class="col-md-12">
+            <label>ID:</label>
+            <input type="text" class="form-control form-control-product" ng-model="item.Id" placeholder="ID" />
+            <br />
+            <label>Descripción:</label>
+            <input type="text" class="form-control form-control-product" ng-model="item.Description" placeholder="Descripcion" />
+            <br />
+            <label>Tipo:</label>
+            <input type="text" class="form-control form-control-product" ng-model="item.Type" placeholder="Tipo" />
+            <br />
+            <label>Clave:</label>
+            <input type="text" class="form-control form-control-product" ng-model="item.Code" placeholder="Clave" />
+            <br />
+            <label for="sel1">Tarifa:</label>
+            <select ng-model="item.RateId" ng-controller="ListRate" class="form-control form-control-product" id="sel1" placeholder="Familia">
+                <option ng-repeat="u in items2" value={{u.Id}}>{{u.Name}}</option>
+            </select>
+            <br />
+            <pre>
+                item: {{item | json}}
+            </pre>
+
+            <button class="btn btn-success btn-icon-split" type="submit">
+                <span class="icon text-white-50">
+                    <i class="fas fa-check"></i>
+                </span>
+                <span class="text">Guardar</span>
+            </button>
+            <button class="btn btn-danger btn-icon-split" onclick="location.reload()">
+                <span class="icon text-white-50">
+                    <i class="fas fa-trash"></i>
+                </span>
+                <span class="text">Cancelar</span>
+            </button>
+        </div>
+    </div>
+</form>
